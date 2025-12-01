@@ -1,0 +1,40 @@
+(defpackage :day01
+  (:use :cl :arrows)
+  (:import-from :trivia #:match)
+  (:export #:main))
+
+(in-package :day01)
+
+(defun part01 (content)
+  (labels ((parse (line)
+             (match (uiop:first-char line)
+               (#\L (- (parse-integer line :start 1)))
+               (#\R (parse-integer line :start 1))))
+           (reduce-f (a b)
+             (let ((s (+ (first a) b)))
+               (cons (mod (+ s 100) 100) a))))
+    (-<> (str:lines (str:trim content))
+      (map 'list #'parse <>)
+      (reduce #'reduce-f <> :initial-value '(50))
+      (count 0 <>))))
+
+(defun part02 (content)
+  (labels ((parse (line)
+             (match (uiop:first-char line)
+               (#\L (loop for i below (parse-integer line :start 1) collect (- 1)))
+               (#\R (loop for i below (parse-integer line :start 1) collect 1))))
+           (reduce-f (a b)
+             (let ((s (+ (first a) b)))
+               (cons (mod (+ s 100) 100) a))))
+    (-<> (str:lines (str:trim content))
+      (map 'list #'parse <>)
+      (apply #'append <>)
+      (reduce #'reduce-f <> :initial-value '(50))
+      (count 0 <>))))
+
+
+
+(defun main ()
+  (let ((content (utils:read-input "01")))
+    (format t "~A~%" (part01 content))
+    (format t "~A~%" (part02 content))))
