@@ -1,3 +1,5 @@
+[![Run FiveAM tests](https://github.com/DrearyLisper/aoc-2025/actions/workflows/fiveam-tests.yml/badge.svg)](https://github.com/DrearyLisper/aoc-2025/actions/workflows/fiveam-tests.yml)
+
 # Solving AoC 2025 problems in Common Lisp
 
 ![Logo](https://raw.githubusercontent.com/DrearyLisper/aoc-2025/main/images/logo.png)
