@@ -40,7 +40,7 @@ jobs:
           curl -o /tmp/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
           sbcl --noinform --load /tmp/quicklisp.lisp \
                --eval '(quicklisp-quickstart:install :path "'"${QUICKLISP_DIST}"'")' \
-               --eval '(load "aoc-2025.asd")'
-               --eval '(ql:quickload :aoc-2025/test)'
-               --eval '(handler-case (asdf:test-system :aoc-2025/test) (error (e) (uiop:quit 1)))'
+               --eval '(load "aoc-2025.asd")' \
+               --eval '(ql:quickload :aoc-2025/test)' \
+               --eval '(handler-case (asdf:test-system :aoc-2025/test) (error (e) (uiop:quit 1)))' \
                --quit
