@@ -14,13 +14,13 @@ jobs:
 
     steps:
       # ------------------------------------------------------------------
-      # 1️⃣ Checkout the repository
+      # Checkout the repository
       # ------------------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
       # ------------------------------------------------------------------
-      # 2️⃣ Install SBCL (apt package) and curl (for Quicklisp)
+      # Install SBCL (apt package) and curl (for Quicklisp)
       # ------------------------------------------------------------------
       - name: Install SBCL & utilities
         run: |
@@ -28,21 +28,7 @@ jobs:
           sudo apt-get install -y sbcl curl make
 
       # ------------------------------------------------------------------
-      # 3️⃣ Restore Quicklisp cache (if we have one)
-      # ------------------------------------------------------------------
-      - name: Restore Quicklisp cache
-        uses: actions/cache@v4
-        env:
-          QUICKLISP_DIST: ${{ runner.temp }}/quicklisp
-          QUICKLISP_HOME: ${{ runner.temp }}/quicklisp
-        with:
-          path: ${{ env.QUICKLISP_DIST }}
-          key: quicklisp-${{ runner.os }}-${{ hashFiles('**/*.asd') }}
-          restore-keys: |
-            quicklisp-${{ runner.os }}-
-
-      # ------------------------------------------------------------------
-      # 4️⃣ Install Quicklisp (if not cached)
+      # Install Quicklisp
       # ------------------------------------------------------------------
       - name: Install Quicklisp
         if: steps.restore-quicklisp-cache.outputs.cache-hit != 'true'
@@ -54,42 +40,7 @@ jobs:
           curl -o /tmp/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
           sbcl --noinform --load /tmp/quicklisp.lisp \
                --eval '(quicklisp-quickstart:install :path "'"${QUICKLISP_DIST}"'")' \
-               --eval '(ql:add-to-init-file)' \
+               --eval '(load "aoc-2025.asd")'
+               --eval '(ql:quickload :aoc-2025/test)'
+               --eval '(handler-case (asdf:test-system :aoc-2025/test) (error (e) (uiop:quit 1)))'
                --quit
-          # Verify installation
-          sbcl --noinform --eval '(print (ql:quickload :fiveam))' --quit
-
-      # ------------------------------------------------------------------
-      # 5️⃣ Load your ASDF system and run FiveAM tests
-      # ------------------------------------------------------------------
-      - name: Run FiveAM test suite
-        env:
-          QUICKLISP_DIST: ${{ runner.temp }}/quicklisp
-          QUICKLISP_HOME: ${{ runner.temp }}/quicklisp
-        run: |
-          # Create a tiny wrapper script that loads Quicklisp, your system,
-          # and then asks ASDF to perform the test operation.
-          cat <<'EOF' > run-tests.lisp
-          (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-                                                (user-homedir-pathname))))
-            (when (probe-file quicklisp-init)
-              (load quicklisp-init)))
-          (asdf:load-system :aoc-2025/test)   ; loads both the library and its test system
-          (handler-case
-              (asdf:test-system :aoc-2025/test)    ; invokes the :perform clause → FiveAM runs
-            (error (e)
-              (format *error-output* "~&Test run failed: ~A~%" e)
-              (uiop:quit 1)))               ; non‑zero exit status makes the job fail
-          EOF
-
-          sbcl --noinform --load run-tests.lisp
-
-      # ------------------------------------------------------------------
-      # 6️⃣ (Optional) Upload test results as an artifact for later inspection
-      # ------------------------------------------------------------------
-      - name: Archive test output (if you wrote it to a file)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: fiveam-test-output
-          path: test-output.txt   # change to whatever file you generate
