@@ -1,9 +1,9 @@
+(in-package :cl-user)
 (defpackage :day02-test
   (:use :cl :fiveam :day02))
 (in-package :day02-test)
 
-(def-suite day02-test)
-(in-suite day02-test)
+(def-suite* day02-test :in cl-user::aoc-2025/test)
 
 (test part01
   (let ((content (utils:read-input "02")))
