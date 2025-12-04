@@ -1,6 +1,6 @@
 (in-package :cl-user)
 (defpackage :day03-test
-  (:use :cl :fiveam :day02))
+  (:use :cl :fiveam :day03))
 (in-package :day03-test)
 
 (def-suite* day03-test :in cl-user::aoc-2025/test)
