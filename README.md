@@ -36,7 +36,7 @@ aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(d
 175659236361660
 ```
 
-## Day 4: Lobby
+## Day 4: Printing Department
 
 [Full Solution](https://github.com/DrearyLisper/aoc-2025/tree/main/src/04/main.lisp)
 
