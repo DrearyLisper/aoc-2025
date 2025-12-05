@@ -46,3 +46,13 @@ aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(d
 9083
 ```
 
+## Day 5: Cafeteria
+
+[Full Solution](https://github.com/DrearyLisper/aoc-2025/tree/main/src/05/main.lisp)
+
+``` bash
+aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(day05:main)' --quit
+617
+338258295736104
+```
+
