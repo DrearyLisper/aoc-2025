@@ -5,7 +5,8 @@
                (:file "src/02/main")
                (:file "src/03/main")
                (:file "src/04/main")
-               (:file "src/05/main")))
+               (:file "src/05/main")
+               (:file "src/06/main")))
 
 (asdf:defsystem :aoc-2025/test
   :depends-on (:aoc-2025 :fiveam)
@@ -14,6 +15,7 @@
                (:file "src/02/test")
                (:file "src/03/test")
                (:file "src/04/test")
-               (:file "src/05/test"))
+               (:file "src/05/test")
+               (:file "src/06/test"))
   :perform (asdf:test-op (op c)
                          (uiop:symbol-call :fiveam :run! 'cl-user::aoc-2025/test)))

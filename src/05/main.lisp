@@ -5,8 +5,6 @@
 
 (in-package :day05)
 
-(declaim (optimize (debug 3)))
-
 (defun part01 (content)
   (labels
       ((parse (content)

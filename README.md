@@ -56,3 +56,13 @@ aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(d
 338258295736104
 ```
 
+## Day 6: Trash Compactor
+
+[Full Solution](https://github.com/DrearyLisper/aoc-2025/tree/main/src/06/main.lisp)
+
+``` bash
+aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(day06:main)' --quit
+5346286649122
+10389131401929
+```
+
