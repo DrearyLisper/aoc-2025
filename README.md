@@ -86,3 +86,13 @@ aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(d
 3926518899
 ```
 
+## Day 9: Movie Theater
+
+[Full Solution](https://github.com/DrearyLisper/aoc-2025/tree/main/src/09/main.lisp)
+
+``` bash
+aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(day09:main)' --quit
+4738108384
+1513792010
+```
+

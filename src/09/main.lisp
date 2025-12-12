@@ -21,8 +21,8 @@
                      for b from (1+ a) below (length tiles)
                      collect (let ((a-tile (aref tiles a))
                                    (b-tile (aref tiles b)))
-                               (* (abs (1+ (- (first a-tile) (first b-tile))))
-                                  (abs (1+ (- (second a-tile) (second b-tile))))))))
+                               (* (1+ (abs (- (first a-tile) (first b-tile))))
+                                  (1+ (abs (- (second a-tile) (second b-tile))))))))
          (apply #'append <>)
          (apply #'max <>))))
 
@@ -68,8 +68,8 @@
                       (b-tile (aref tiles b)))
                  (if (contains-border a-tile b-tile keys)
                      0
-                     (* (abs (1+ (- (first a-tile) (first b-tile))))
-                        (abs (1+ (- (second a-tile) (second b-tile)))))))))
+                     (* (1+ (abs (- (first a-tile) (first b-tile))))
+                        (1+ (abs (- (second a-tile) (second b-tile)))))))))
       (-<> (loop
              for a from 0 below (length tiles)
              collect (loop
