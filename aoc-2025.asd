@@ -1,5 +1,5 @@
 (asdf:defsystem :aoc-2025
-  :depends-on (:trivia :alexandria :str :arrows)
+  :depends-on (:trivia :alexandria :str :arrows :lparallel)
   :components ((:file "src/utils")
                (:file "src/01/main")
                (:file "src/02/main")
@@ -8,7 +8,8 @@
                (:file "src/05/main")
                (:file "src/06/main")
                (:file "src/07/main")
-               (:file "src/08/main")))
+               (:file "src/08/main")
+               (:file "src/09/main")))
 
 (asdf:defsystem :aoc-2025/test
   :depends-on (:aoc-2025 :fiveam)
