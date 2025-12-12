@@ -9,7 +9,8 @@
                (:file "src/06/main")
                (:file "src/07/main")
                (:file "src/08/main")
-               (:file "src/09/main")))
+               (:file "src/09/main")
+               (:file "src/10/main")))
 
 (asdf:defsystem :aoc-2025/test
   :depends-on (:aoc-2025 :fiveam)
