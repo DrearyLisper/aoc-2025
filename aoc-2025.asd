@@ -23,6 +23,7 @@
                (:file "src/06/test")
                (:file "src/07/test")
                (:file "src/08/test")
-               (:file "src/09/test"))
+               (:file "src/09/test")
+               (:file "src/10/test"))
   :perform (asdf:test-op (op c)
                          (uiop:symbol-call :fiveam :run! 'cl-user::aoc-2025/test)))
