@@ -106,3 +106,13 @@ aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(d
 21111
 ```
 
+## Day 11: Reactor
+
+[Full Solution](https://github.com/DrearyLisper/aoc-2025/tree/main/src/11/main.lisp)
+
+``` bash
+aoc-2025$ sbcl --load aoc-2025.asd  --eval '(ql:quickload :aoc-2025)' --eval '(day11:main)' --quit
+788
+316291887968000
+```
+
